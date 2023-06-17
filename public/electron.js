@@ -7,14 +7,17 @@ const isDev = require("electron-is-dev");
 let mainWindow;
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 1500,
-    height: 700,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
       enableRemoteModule: true,
     },
+    icon: __dirname + "/icon.png",
+    title: "MomTasker",
+    label: "MomTasker",
   });
+  mainWindow.maximize();
+  mainWindow.removeMenu();
   mainWindow.loadURL(
     isDev
       ? "http://localhost:3000"

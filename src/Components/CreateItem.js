@@ -9,13 +9,8 @@ export const CreateItem = ({ items, setItems }) => {
 
     let doc = {
       item,
-      dateAdded: String(
-        new Date().getDate() +
-          "/" +
-          (new Date().getMonth() + 1) +
-          "/" +
-          new Date().getFullYear()
-      ),
+      dateAdded: String(new Date().getMonth() + 1 + "/" + new Date().getDate()),
+      done: false,
     };
     db.insert(doc, (err, newDoc) => {
       if (!err) {
@@ -26,19 +21,26 @@ export const CreateItem = ({ items, setItems }) => {
     });
   };
   return (
-    <div className="formContainer">
-      <input
-        type="text"
-        placeholder="Enter Item"
-        className="inputTODO"
-        onChange={(e) => {
-          setItem(e.target.value);
-        }}
-        value={item}
-      />
-      <button className="addItem" onClick={saveItemToDB}>
-        Add Item
-      </button>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      <div className="formContainer" style={{ width: "70vw" }}>
+        <input
+          type="text"
+          placeholder="Enter Item"
+          className="inputTODO"
+          onChange={(e) => {
+            setItem(e.target.value);
+          }}
+          value={item}
+        />
+        <button className="addItem" onClick={saveItemToDB}>
+          Add Item
+        </button>
+      </div>
     </div>
   );
 };
