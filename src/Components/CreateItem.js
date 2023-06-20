@@ -1,25 +1,33 @@
 import { useState } from "react";
-import db from "../nedb/items";
 import "../App.css";
+import { socket } from "../socket";
 
 export const CreateItem = ({ items, setItems }) => {
   const [item, setItem] = useState("");
-  const saveItemToDB = (e) => {
-    e.preventDefault();
+  const [error, setError] = useState("");
 
-    let doc = {
-      item,
-      dateAdded: String(new Date().getMonth() + 1 + "/" + new Date().getDate()),
-      done: false,
-    };
-    db.insert(doc, (err, newDoc) => {
-      if (!err) {
-        console.info("Item Added");
-        setItems([...items, doc]);
-        setItem("");
-      }
-    });
+  const saveItemToDB = async (e) => {
+    try {
+      e.preventDefault();
+
+      let doc = {
+        item,
+        dateAdded: String(
+          new Date().getMonth() + 1 + "/" + new Date().getDate()
+        ),
+        done: false,
+      };
+
+      var itemsTwo = [...items, doc];
+      setItems(itemsTwo);
+      setItem("");
+
+      await socket.emit("add", doc);
+    } catch (err) {
+      setError(err.message);
+    }
   };
+
   return (
     <div
       style={{
@@ -41,6 +49,7 @@ export const CreateItem = ({ items, setItems }) => {
           Add Item
         </button>
       </div>
+      <p>{error}</p>
     </div>
   );
 };

@@ -6,7 +6,7 @@ export const TODOItems = ({ items, setItems }) => {
     <div className="items-cont">
       {items.map((val, idx) => (
         <Item
-          key={val._id}
+          key={idx}
           item={val}
           idx={idx}
           items={items}

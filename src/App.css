@@ -3,6 +3,7 @@
 :root {
   --primary: #d775f7;
   --dark-primary: #8a2aaa;
+  --dark-primary-highlight: #73228e;
 }
 
 body {
@@ -67,6 +68,11 @@ body, input, ::placeholder, button {
   /* border: 1px solid white; */
   border: none;
   margin-left: 50px;
+}
+
+.formContainer .addItem:hover {
+  background-color: var(--dark-primary-highlight);
+  cursor: pointer;
 }
 
 .items-cont {

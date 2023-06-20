@@ -1,37 +1,46 @@
-import db from "../nedb/items";
 import "../App.css";
+import { socket } from "../socket";
 import {
   AiFillDelete,
   AiFillCheckCircle,
   AiOutlineCheckCircle,
   AiFillBell,
 } from "react-icons/ai";
-import addNotification, { Notifications } from "react-push-notification";
+import addNotification from "react-push-notification";
 
 export const Item = ({ item, idx, items, setItems }) => {
   const deleteItem = (e) => {
     e.preventDefault();
-    db.remove({ _id: item._id }, {}, (err, numRemoved) => {
-      if (!err) {
-        console.log("DELETED: ", item._id);
-        setItems([...items.slice(0, idx), ...items.slice(idx + 1)]);
+    socket.emit("delete", item);
+
+    let index = 0;
+    for (let i = 0; i < items.length; i++) {
+      if (item._id === items[i]._id) {
+        index = i;
+        break;
       }
-    });
+    }
+
+    var itemsTwo = [...items.slice(0, index), ...items.slice(index + 1)];
+    setItems(itemsTwo);
   };
+
   const changeCheck = (e) => {
     e.preventDefault();
-    db.update(
-      { _id: item._id },
-      { $set: { done: !item.done } },
-      {}, // this argument was missing
-      function (err, numReplaced) {
-        let itemMod = item;
-        itemMod.done = !item.done;
+    socket.emit("changeCheck", item);
 
-        setItems([...items.slice(0, idx), itemMod, ...items.slice(idx + 1)]);
+    for (let i = 0; i < items.length; i++) {
+      if (item._id === items[i]._id) {
+        let itemDup = item;
+        itemDup.done = !item.done;
+
+        var itemsTwo = [...items.slice(0, i), itemDup, ...items.slice(i + 1)];
+        setItems(itemsTwo);
+        break;
       }
-    );
+    }
   };
+
   const pushNotification = (e) => {
     e.preventDefault();
     addNotification({
