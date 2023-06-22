@@ -18,10 +18,6 @@ export const CreateItem = ({ items, setItems }) => {
         done: false,
       };
 
-      var itemsTwo = [...items, doc];
-      setItems(itemsTwo);
-      setItem("");
-
       await socket.emit("add", doc);
     } catch (err) {
       setError(err.message);

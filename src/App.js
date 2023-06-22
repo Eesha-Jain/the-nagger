@@ -2,9 +2,22 @@ import { useState } from "react";
 import "./App.css";
 import { CreateItem } from "./Components/CreateItem";
 import { TODOItems } from "./Components/TODOItems";
+import { socket } from "./socket";
 
 function App() {
   const [items, setItems] = useState([]);
+
+  socket.on("add", function (newItems) {
+    setItems(newItems);
+  });
+
+  socket.on("delete", function (newItems) {
+    setItems(newItems);
+  });
+
+  socket.on("changeCheck", function (newItems) {
+    setItems(newItems);
+  });
 
   return (
     <div className="App">

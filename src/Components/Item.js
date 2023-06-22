@@ -12,33 +12,11 @@ export const Item = ({ item, idx, items, setItems }) => {
   const deleteItem = (e) => {
     e.preventDefault();
     socket.emit("delete", item);
-
-    let index = 0;
-    for (let i = 0; i < items.length; i++) {
-      if (item._id === items[i]._id) {
-        index = i;
-        break;
-      }
-    }
-
-    var itemsTwo = [...items.slice(0, index), ...items.slice(index + 1)];
-    setItems(itemsTwo);
   };
 
   const changeCheck = (e) => {
     e.preventDefault();
     socket.emit("changeCheck", item);
-
-    for (let i = 0; i < items.length; i++) {
-      if (item._id === items[i]._id) {
-        let itemDup = item;
-        itemDup.done = !item.done;
-
-        var itemsTwo = [...items.slice(0, i), itemDup, ...items.slice(i + 1)];
-        setItems(itemsTwo);
-        break;
-      }
-    }
   };
 
   const pushNotification = (e) => {
