@@ -8,7 +8,7 @@ const corsProxyUrl = "https://cors-anywhere.herokuapp.com/";
 
 const URL =
   process.env.NODE_ENV === "production"
-    ? "https://mom-tasker-server.vercel.app/"
+    ? "https://mom-tasker-server.vercel.app"
     : "http://localhost:4000";
 
 let mainWindow;
