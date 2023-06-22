@@ -6,6 +6,11 @@ const io = require("socket.io-client");
 
 const corsProxyUrl = "https://cors-anywhere.herokuapp.com/";
 
+const URL =
+  process.env.NODE_ENV === "production"
+    ? "https://mom-tasker-server.vercel.app/"
+    : "http://localhost:4000";
+
 let mainWindow;
 
 function createWindow() {
@@ -28,7 +33,7 @@ function createWindow() {
   );
 
   // Create a socket.io connection
-  const socket = io(`${corsProxyUrl}https://mom-tasker-server.vercel.app/`);
+  const socket = io(URL);
 
   // Perform actions on socket events
   socket.on("connect", () => {
