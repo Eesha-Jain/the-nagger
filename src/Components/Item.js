@@ -6,7 +6,6 @@ import {
   AiOutlineCheckCircle,
   AiFillBell,
 } from "react-icons/ai";
-import addNotification from "react-push-notification";
 
 export const Item = ({ item, idx, items, setItems }) => {
   const deleteItem = (e) => {
@@ -21,13 +20,7 @@ export const Item = ({ item, idx, items, setItems }) => {
 
   const pushNotification = (e) => {
     e.preventDefault();
-    addNotification({
-      title: "Mom says to do...",
-      message: item.item,
-      theme: "red",
-      closeButton: "X",
-      native: true,
-    });
+    socket.emit("sendNotif", item);
   };
 
   return (

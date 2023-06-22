@@ -3,6 +3,7 @@ import "./App.css";
 import { CreateItem } from "./Components/CreateItem";
 import { TODOItems } from "./Components/TODOItems";
 import { socket } from "./socket";
+import addNotification from "react-push-notification";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -17,6 +18,16 @@ function App() {
 
   socket.on("changeCheck", function (newItems) {
     setItems(newItems);
+  });
+
+  socket.on("sendNotif", function (item) {
+    addNotification({
+      title: "Mom says to do...",
+      message: item.item,
+      theme: "red",
+      closeButton: "X",
+      native: true,
+    });
   });
 
   return (
