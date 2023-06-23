@@ -4,12 +4,7 @@ const isDev = require("electron-is-dev");
 const { app, BrowserWindow } = require("electron");
 const io = require("socket.io-client");
 
-const corsProxyUrl = "https://cors-anywhere.herokuapp.com/";
-
-const URL =
-  process.env.NODE_ENV === "production"
-    ? "https://mom-tasker-server.vercel.app"
-    : "http://localhost:4000";
+const URL = "https://mom-tasker-server.vercel.app";
 
 let mainWindow;
 

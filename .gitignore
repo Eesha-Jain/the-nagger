@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+/MomTasker-win32-x64
 
 # testing
 /coverage
