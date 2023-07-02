@@ -16,8 +16,8 @@ function createWindow() {
       enableRemoteModule: true,
     },
     icon: __dirname + "/icon.png",
-    title: "MomTasker",
-    label: "MomTasker",
+    title: "TheNagger",
+    label: "TheNagger",
   });
   mainWindow.maximize();
   mainWindow.removeMenu();
@@ -41,7 +41,7 @@ function createWindow() {
   });
 }
 
-app.setAppUserModelId("MomTasker");
+app.setAppUserModelId("TheNagger");
 app.on("ready", createWindow);
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {

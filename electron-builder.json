@@ -1,0 +1,40 @@
+{
+    "appId": "com.eesha.thenagger",
+    "productName": "TheNagger",
+    "files": [
+        "package.json",
+        "node_modules",
+        "./build/**/*",
+        "dist/**/*"
+    ],
+    "directories": {
+        "buildResources": "assets"
+    },
+    "dmg": {
+        "background": null,
+        "backgroundColor": "#ffffff",
+        "window": {
+            "width": "400",
+            "height": "300"
+        },
+        "contents": [
+            {
+                "x": 100,
+                "y": 100
+            },
+            {
+                "x": 300,
+                "y": 100,
+                "type": "link",
+                "path": "/Applications"
+            }
+        ]
+    },
+    "mac": {
+        "target": "dmg"
+      },
+    "win": {
+        "target": "nsis",
+        "icon": "build/icon.png"
+    }
+}
