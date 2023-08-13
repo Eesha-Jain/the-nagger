@@ -10,7 +10,7 @@ import {
 export const Item = ({ item, idx, items, setItems }) => {
   const deleteItem = (e) => {
     e.preventDefault();
-    socket.emit("delete", item);
+    socket.emit("delete", idx);
   };
 
   const changeCheck = (e) => {

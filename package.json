@@ -25,8 +25,8 @@
     "react-icons": "^4.9.0",
     "react-push-notification": "^1.5.3",
     "react-router-dom": "^6.13.0",
-    "react-scripts": "4.0.3",
-    "socket.io": "^4.6.2",
+    "react-scripts": "^5.0.1",
+    "socket.io": "^4.7.2",
     "socket.io-client": "^4.6.2",
     "wait-on": "^6.0.0",
     "web-vitals": "^1.0.1"
@@ -35,11 +35,23 @@
     "react-start": "react-scripts start",
     "react-build": "react-scripts --openssl-legacy-provider build",
     "release": "react-scripts --openssl-legacy-provider build && electron-builder -mw --publish=never",
-    "dev": "concurrently \"SET BROWSER=none && npm run react-start\" \"wait-on http://localhost:3000 && electron .\"",
-    "postinstall": "electron-builder install-app-deps",
-    "preelectron-pack": "react-scripts --openssl-legacy-provider build",
-    "pack": "electron-builder -mw",
-    "start": "npm install && electron ./app"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "dev": "concurrently -k \"BROWSER=none yarn start\" \"yarn:electron\"",
+    "electron": "wait-on tcp:3000 && electron ."
+  },
+  "build": {
+    "directories": {
+      "output": "build"
+    },
+    "mac": {
+      "icon": "build/logo.icns"
+    },
+    "win": {
+      "icon": "build/logo.png"
+    }
   },
   "eslintConfig": {
     "extends": [
@@ -67,7 +79,7 @@
     "@electron-forge/maker-squirrel": "^6.2.1",
     "@electron-forge/maker-zip": "^6.2.1",
     "@electron-forge/plugin-auto-unpack-natives": "^6.2.1",
-    "electron": "^25.2.0",
+    "electron": "^25.5.0",
     "electron-builder": "^24.4.0"
   }
 }

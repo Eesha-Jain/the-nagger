@@ -15,7 +15,7 @@ function createWindow() {
       contextIsolation: false,
       enableRemoteModule: true,
     },
-    icon: __dirname + "/icon.png",
+    icon: `file://${path.join(__dirname, "../build/icon.png")}`,
     title: "TheNagger",
     label: "TheNagger",
   });
