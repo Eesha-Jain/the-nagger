@@ -21,6 +21,7 @@ export const CreateItem = ({ items, setItems }) => {
       await socket.emit("add", doc);
       setItem("");
     } catch (err) {
+      console.log(err.message);
       setError(err.message);
     }
   };
