@@ -4,7 +4,7 @@ const isDev = require("electron-is-dev");
 const { app, BrowserWindow } = require("electron");
 const io = require("socket.io-client");
 
-const URL = "https://mom-tasker-server.vercel.app:3030";
+const URL = "https://the-nagger-server.adaptable.app";
 
 let mainWindow;
 

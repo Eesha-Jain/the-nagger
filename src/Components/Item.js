@@ -10,7 +10,7 @@ import {
 export const Item = ({ item, idx, items, setItems }) => {
   const deleteItem = (e) => {
     e.preventDefault();
-    socket.emit("delete", idx);
+    socket.emit("delete", item);
   };
 
   const changeCheck = (e) => {
@@ -37,7 +37,7 @@ export const Item = ({ item, idx, items, setItems }) => {
           className="title"
           style={{ textDecoration: item.done ? "line-through" : "none" }}
         >
-          {item.item}
+          {item.task}
         </div>
       </div>
       <div className="flex">
@@ -45,7 +45,7 @@ export const Item = ({ item, idx, items, setItems }) => {
           className="date"
           style={{ textDecoration: item.done ? "line-through" : "none" }}
         >
-          {item.dateAdded}
+          {item.created_at.split("T")[0]}
         </div>
         <button className="push flex" onClick={pushNotification}>
           <AiFillBell />

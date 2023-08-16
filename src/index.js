@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Notifications } from 'react-push-notification';
 
 ReactDOM.render(
   <React.StrictMode>
+    <Notifications />
     <App />
   </React.StrictMode>,
   document.getElementById('root')

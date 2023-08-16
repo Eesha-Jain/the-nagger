@@ -11,10 +11,7 @@ export const CreateItem = ({ items, setItems }) => {
       e.preventDefault();
 
       let doc = {
-        item,
-        dateAdded: String(
-          new Date().getMonth() + 1 + "/" + new Date().getDate()
-        ),
+        task: item,
         done: false,
       };
 

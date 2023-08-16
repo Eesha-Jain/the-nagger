@@ -1,12 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { CreateItem } from "./Components/CreateItem";
 import { TODOItems } from "./Components/TODOItems";
 import { socket } from "./socket";
-import addNotification from "react-push-notification";
+import addNotification from 'react-push-notification';
 
 function App() {
   const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    socket.emit("get");
+  }, []);
+
+  socket.on("get", function (newItems) {
+    setItems(newItems);
+  });
 
   socket.on("add", function (newItems) {
     setItems(newItems);
@@ -22,11 +30,9 @@ function App() {
 
   socket.on("sendNotif", function (item) {
     addNotification({
-      title: "Mom says to do...",
-      message: item.item,
-      theme: "red",
-      closeButton: "X",
-      native: true,
+      title: "Your nagger says...",
+      message: item.task,
+      native: true
     });
   });
 
