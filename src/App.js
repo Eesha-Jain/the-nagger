@@ -3,7 +3,6 @@ import "./App.css";
 import { CreateItem } from "./Components/CreateItem";
 import { TODOItems } from "./Components/TODOItems";
 import { socket } from "./socket";
-import addNotification from 'react-push-notification';
 
 function App() {
   const [items, setItems] = useState([]);
@@ -29,11 +28,11 @@ function App() {
   });
 
   socket.on("sendNotif", function (item) {
-    addNotification({
-      title: "Your nagger says...",
-      message: item.task,
-      native: true
-    });
+    Notification.requestPermission().then((result) => {
+      new Notification("The Nagger says to...", {
+        body: item.task
+      })
+    })
   });
 
   return (

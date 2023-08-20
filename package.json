@@ -14,7 +14,6 @@
     "concurrently": "^6.3.0",
     "cors": "^2.8.5",
     "cors-anywhere": "^0.4.4",
-    "electron": "^25.5.0",
     "electron-is-dev": "^2.0.0",
     "electron-squirrel-startup": "^1.0.0",
     "electron-wix-msi": "^5.0.0",
@@ -44,6 +43,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "altdev": "electron .",
     "dev": "concurrently -k \"BROWSER=none yarn start\" \"yarn:electron\"",
     "electron": "wait-on tcp:3000 && electron ."
   },
@@ -52,10 +52,10 @@
       "output": "build"
     },
     "mac": {
-      "icon": "build/logo.icns"
+      "icon": "public/icon.png"
     },
     "win": {
-      "icon": "build/logo.png"
+      "icon": "public/icon.png"
     }
   },
   "eslintConfig": {
@@ -84,6 +84,7 @@
     "@electron-forge/maker-squirrel": "^6.2.1",
     "@electron-forge/maker-zip": "^6.2.1",
     "@electron-forge/plugin-auto-unpack-natives": "^6.2.1",
+    "electron": "^26.0.0",
     "electron-builder": "^24.4.0"
   }
 }
