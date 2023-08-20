@@ -1,11 +1,11 @@
 {
   "name": "thenagger",
   "productName": "TheNagger",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "private": false,
   "homepage": "./",
   "author": "Eesha",
-  "description": "Mom assigns you tasks to do...",
+  "description": "The nagger assigns you tasks to do...",
   "main": "public/electron.js",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
